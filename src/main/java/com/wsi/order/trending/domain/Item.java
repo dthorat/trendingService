@@ -12,43 +12,26 @@ public class Item {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String ORDER_LINE_KEY; 
-	private String ORDER_HEADER_KEY; 
-	private String LINE_TYPE; 
-	private String ORDER_CLASS; 
+	private String ITEM_KEY; 
 	private String ITEM_ID; 
-	private String ALTERNATE_ITEM_ID;
-	private String PRODUCT_CLASS; 
-	private Double UNIT_PRICE; 
+	private String SHORT_DESCRIPTION; 
+	private String DESCRIPTION; 
+	private String EXTENDED_DESCRIPTION; 
+	private Double UNIT_COST; 
 	private String COST_CURRENCY; 
-	private Double ORDERED_QT;  
-	private Double LINE_TOTAL;
+	private String MANUFACTURER_NAME; 
+	private String MANUFACTURER_ITEM; 
+	private String MANUFACTURER_ITEM_DESC; 
+	private String ITEM_TYPE; 
+	private String STATUS;
 	
 	public Item() {}
 	
-	public String getORDER_LINE_KEY() {
-		return ORDER_LINE_KEY;
+	public String getITEM_KEY() {
+		return ITEM_KEY;
 	}
-	public void setORDER_LINE_KEY(String oRDER_LINE_KEY) {
-		ORDER_LINE_KEY = oRDER_LINE_KEY;
-	}
-	public String getORDER_HEADER_KEY() {
-		return ORDER_HEADER_KEY;
-	}
-	public void setORDER_HEADER_KEY(String oRDER_HEADER_KEY) {
-		ORDER_HEADER_KEY = oRDER_HEADER_KEY;
-	}
-	public String getLINE_TYPE() {
-		return LINE_TYPE;
-	}
-	public void setLINE_TYPE(String lINE_TYPE) {
-		LINE_TYPE = lINE_TYPE;
-	}
-	public String getORDER_CLASS() {
-		return ORDER_CLASS;
-	}
-	public void setORDER_CLASS(String oRDER_CLASS) {
-		ORDER_CLASS = oRDER_CLASS;
+	public void setITEM_KEY(String iTEM_KEY) {
+		ITEM_KEY = iTEM_KEY;
 	}
 	public String getITEM_ID() {
 		return ITEM_ID;
@@ -56,23 +39,29 @@ public class Item {
 	public void setITEM_ID(String iTEM_ID) {
 		ITEM_ID = iTEM_ID;
 	}
-	public String getALTERNATE_ITEM_ID() {
-		return ALTERNATE_ITEM_ID;
+	public String getSHORT_DESCRIPTION() {
+		return SHORT_DESCRIPTION;
 	}
-	public void setALTERNATE_ITEM_ID(String aLTERNATE_ITEM_ID) {
-		ALTERNATE_ITEM_ID = aLTERNATE_ITEM_ID;
+	public void setSHORT_DESCRIPTION(String sHORT_DESCRIPTION) {
+		SHORT_DESCRIPTION = sHORT_DESCRIPTION;
 	}
-	public String getPRODUCT_CLASS() {
-		return PRODUCT_CLASS;
+	public String getDESCRIPTION() {
+		return DESCRIPTION;
 	}
-	public void setPRODUCT_CLASS(String pRODUCT_CLASS) {
-		PRODUCT_CLASS = pRODUCT_CLASS;
+	public void setDESCRIPTION(String dESCRIPTION) {
+		DESCRIPTION = dESCRIPTION;
 	}
-	public Double getUNIT_PRICE() {
-		return UNIT_PRICE;
+	public String getEXTENDED_DESCRIPTION() {
+		return EXTENDED_DESCRIPTION;
 	}
-	public void setUNIT_PRICE(Double uNIT_PRICE) {
-		UNIT_PRICE = uNIT_PRICE;
+	public void setEXTENDED_DESCRIPTION(String eXTENDED_DESCRIPTION) {
+		EXTENDED_DESCRIPTION = eXTENDED_DESCRIPTION;
+	}
+	public Double getUNIT_COST() {
+		return UNIT_COST;
+	}
+	public void setUNIT_COST(Double uNIT_COST) {
+		UNIT_COST = uNIT_COST;
 	}
 	public String getCOST_CURRENCY() {
 		return COST_CURRENCY;
@@ -80,25 +69,43 @@ public class Item {
 	public void setCOST_CURRENCY(String cOST_CURRENCY) {
 		COST_CURRENCY = cOST_CURRENCY;
 	}
-	public Double getORDERED_QT() {
-		return ORDERED_QT;
+	public String getMANUFACTURER_NAME() {
+		return MANUFACTURER_NAME;
 	}
-	public void setORDERED_QT(Double oRDERED_QT) {
-		ORDERED_QT = oRDERED_QT;
+	public void setMANUFACTURER_NAME(String mANUFACTURER_NAME) {
+		MANUFACTURER_NAME = mANUFACTURER_NAME;
 	}
-	public Double getLINE_TOTAL() {
-		return LINE_TOTAL;
+	public String getMANUFACTURER_ITEM() {
+		return MANUFACTURER_ITEM;
 	}
-	public void setLINE_TOTAL(Double lINE_TOTAL) {
-		LINE_TOTAL = lINE_TOTAL;
+	public void setMANUFACTURER_ITEM(String mANUFACTURER_ITEM) {
+		MANUFACTURER_ITEM = mANUFACTURER_ITEM;
+	}
+	public String getMANUFACTURER_ITEM_DESC() {
+		return MANUFACTURER_ITEM_DESC;
+	}
+	public void setMANUFACTURER_ITEM_DESC(String mANUFACTURER_ITEM_DESC) {
+		MANUFACTURER_ITEM_DESC = mANUFACTURER_ITEM_DESC;
+	}
+	public String getITEM_TYPE() {
+		return ITEM_TYPE;
+	}
+	public void setITEM_TYPE(String iTEM_TYPE) {
+		ITEM_TYPE = iTEM_TYPE;
+	}
+	public String getSTATUS() {
+		return STATUS;
+	}
+	public void setSTATUS(String sTATUS) {
+		STATUS = sTATUS;
 	}
 	@Override
 	public String toString() {
-		return "Item [ORDER_LINE_KEY=" + ORDER_LINE_KEY + ", ORDER_HEADER_KEY=" + ORDER_HEADER_KEY + ", LINE_TYPE="
-				+ LINE_TYPE + ", ORDER_CLASS=" + ORDER_CLASS + ", ITEM_ID=" + ITEM_ID + ", ALTERNATE_ITEM_ID="
-				+ ALTERNATE_ITEM_ID + ", PRODUCT_CLASS=" + PRODUCT_CLASS + ", UNIT_PRICE=" + UNIT_PRICE
-				+ ", COST_CURRENCY=" + COST_CURRENCY + ", ORDERED_QT=" + ORDERED_QT + ", LINE_TOTAL=" + LINE_TOTAL
-				+ "]";
+		return "OrderLine [ITEM_KEY=" + ITEM_KEY + ", ITEM_ID=" + ITEM_ID + ", SHORT_DESCRIPTION=" + SHORT_DESCRIPTION
+				+ ", DESCRIPTION=" + DESCRIPTION + ", EXTENDED_DESCRIPTION=" + EXTENDED_DESCRIPTION + ", UNIT_COST="
+				+ UNIT_COST + ", COST_CURRENCY=" + COST_CURRENCY + ", MANUFACTURER_NAME=" + MANUFACTURER_NAME
+				+ ", MANUFACTURER_ITEM=" + MANUFACTURER_ITEM + ", MANUFACTURER_ITEM_DESC=" + MANUFACTURER_ITEM_DESC
+				+ ", ITEM_TYPE=" + ITEM_TYPE + ", STATUS=" + STATUS + "]";
 	}
 	
 }
