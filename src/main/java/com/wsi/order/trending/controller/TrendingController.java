@@ -1,8 +1,9 @@
 package com.wsi.order.trending.controller;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,7 @@ import com.wsi.order.trending.repository.OrderRepository;
 @RestController
 public class TrendingController {
 
+	@Autowired
 	private OrderRepository repository;
 
     public TrendingController(OrderRepository repository) {
@@ -19,7 +21,7 @@ public class TrendingController {
     }
 
     @GetMapping("/trending")
-    public Collection<Order> coolCars() {
+    public List<Order> coolCars() {
         return repository.findAll().stream()
                 .filter(this::isTrending)
                 .collect(Collectors.toList());
