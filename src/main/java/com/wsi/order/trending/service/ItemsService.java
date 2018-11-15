@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wsi.order.trending.domain.Item;
-import com.wsi.order.trending.repository.ItemsRepository;
+import com.wsi.order.trending.repository.ItemRepository;
 
 @Service
 public class ItemsService {
 
 	@Autowired
-	ItemsRepository itemsRepository;
+	ItemRepository itemsRepository;
 	
 	public Item getItemById(String itemid) {
 		Item items = itemsRepository.findById(itemid).get();

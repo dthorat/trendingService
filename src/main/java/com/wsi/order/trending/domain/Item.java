@@ -4,10 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="YFS_ITEM")
+
+@NamedNativeQuery(name = "Item.trendingItems", resultClass= Item.class, query = "select * from yfs_item i where i.item_id in ( select trending_item_id from (select ol.item_id as trending_item_id ,count( ol.item_id ) as count " + 
+	"from YFS_ORDER_HEADER oh join yfs_order_line ol on oh.order_header_key = ol.order_header_key join yfs_item item on item.item_id= ol.item_id " + 
+	"where oh.order_date > sysdate-15  group by ol.item_id order by count desc) where rownum<=5)")
 public class Item {
 	
 	@Id
