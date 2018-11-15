@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wsi.order.trending.domain.Item;
 import com.wsi.order.trending.domain.Order;
+import com.wsi.order.trending.exceptions.ItemNotFoundException;
 import com.wsi.order.trending.repository.ItemRepository;
 import com.wsi.order.trending.service.ItemsService;
 
@@ -36,17 +37,17 @@ public class TrendingController {
     
     @GetMapping("/item/{itemid}")
     public Item getItemByID(@PathVariable("itemid") String itemid) {
-    	/*System.out.println("inside method call.");
+    	System.out.println("inside method call.");
     	System.out.println("Item Key = "+itemid);
     	Item item = itemsService.getItemById(itemid);
     	if(item != null) {
     		return item;
     	}
     	else {
-    		throw new NullPointerException("No item found");
-    	}*/
-    	Item item = new Item();
+    		throw new ItemNotFoundException("No item available for the given key.");
+    	}
+    	/*Item item = new Item();
     	item.setCOST_CURRENCY("DOLOR");
-    	return item;
+    	return item;*/
     }
 }

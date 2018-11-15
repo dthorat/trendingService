@@ -1,5 +1,7 @@
 package com.wsi.order.trending.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,12 @@ public class ItemsService {
 	ItemRepository itemsRepository;
 	
 	public Item getItemById(String itemid) {
-		Item items = itemsRepository.findById(itemid).get();
-		if(items !=null) {
-			System.out.println(items.getITEM_KEY()+"\t"+items.getITEM_ID()+"\t"+items.getDESCRIPTION());
+		Optional<Item> item = itemsRepository.findById(itemid+"                 ");
+		if(!item.isPresent()) {
+			return null;
 		}
-		return items;
+		else
+			return item.get();
 	}
 
 }
