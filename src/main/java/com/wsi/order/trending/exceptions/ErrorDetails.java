@@ -3,8 +3,11 @@ package com.wsi.order.trending.exceptions;
 import java.util.Date;
 
 public class ErrorDetails {
+	/** Error occurred time stamp */
 	private Date timestamp;
+	/** Error message time stamp */
 	private String message;
+	/** Request URI details */
 	private String details;
 
 	public ErrorDetails(Date timestamp, String message, String details) {

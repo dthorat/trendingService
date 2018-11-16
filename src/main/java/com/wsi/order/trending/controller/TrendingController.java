@@ -5,12 +5,13 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wsi.order.trending.domain.Item;
-import com.wsi.order.trending.domain.Order;
 import com.wsi.order.trending.exceptions.ItemNotFoundException;
 import com.wsi.order.trending.repository.ItemRepository;
 import com.wsi.order.trending.service.ItemsService;
@@ -18,7 +19,6 @@ import com.wsi.order.trending.service.ItemsService;
 @RestController
 public class TrendingController {
 
-	// Logger
 	private static final Logger logger = LogManager.getLogger(TrendingController.class);
 	
 	@Autowired
@@ -32,21 +32,23 @@ public class TrendingController {
     }
 
     @GetMapping("/trending")
-    public List<Item> getTrendingItems() {
+    public  ResponseEntity<List<Item>> getTrendingItems() {
     	logger.info("inside getTrendingItems");
-        return  repository.findTrendingItemsNative();
-    }
-    
-    private boolean isTrending(Order order) {
-        return order != null;
+    	List<Item> itemsList = null;
+    	try {
+    		itemsList = repository.findTrendingItemsNative();
+    		return new ResponseEntity<>(itemsList, HttpStatus.OK);
+    	}catch(Exception e ) {
+    		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    	}
     }
     
     @GetMapping("/item/{itemid}")
-    public Item getItemByID(@PathVariable("itemid") String itemid) {
+    public ResponseEntity<Item> getItemByID(@PathVariable("itemid") String itemid) {
     	logger.info("inside getItemByID call, Item Key = "+itemid);
     	Item item = itemsService.getItemById(itemid);
     	if(item != null) {
-    		return item;
+    		return ResponseEntity.ok().body(item);
     	}
     	else {
     		throw new ItemNotFoundException("No item available for the given key.");

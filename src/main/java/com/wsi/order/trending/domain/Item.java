@@ -18,10 +18,10 @@ public class Item {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "ITEM_KEY")
+	@Column(name = "ITEM_KEY", columnDefinition="CHAR(24) NOT NULL" )
 	private String itemKey; 
 	
-	@Column(name = "ITEM_ID")
+	@Column(name = "ITEM_ID", columnDefinition="CHAR(24) NOT NULL")
 	private String itemId; 
 	
 	@Column(name = "SHORT_DESCRIPTION")
@@ -33,7 +33,7 @@ public class Item {
 	@Column(name = "EXTENDED_DESCRIPTION")
 	private String extendedDesc; 
 	
-	@Column(name = "UNIT_COST")
+	@Column(name = "UNIT_COST", columnDefinition="NUMBER(19,6) NOT NULL")
 	private Double unitCost; 
 	
 	@Column(name = "COST_CURRENCY")
@@ -51,7 +51,7 @@ public class Item {
 	@Column(name = "ITEM_TYPE")
 	private String itemType; 
 	
-	@Column(name = "STATUS")
+	@Column(name = "STATUS", columnDefinition="CHAR(15) NOT NULL")
 	private String status;
 	
 	@Column(name = "IMAGE_LOCATION")

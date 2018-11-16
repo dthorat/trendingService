@@ -15,72 +15,165 @@ import javax.persistence.TemporalType;
 public class Order {
 	
 	@Id @GeneratedValue
-	@Column(name="ORDER_HEADER_KEY")
-	private String ORDER_HEADER_KEY; 
-	private String ORDER_NO;
+	@Column(name="ORDER_HEADER_KEY", columnDefinition="CHAR(24) NOT NULL")
+	private String orderHeaderKey; 
+	
+	@Column(name="ORDER_NO")
+	private String orderNo ;
+	
 	@Temporal(TemporalType.DATE)
-	private Date  ORDER_DATE; 
-	private String ORDER_TYPE; 
-	private String ORDER_PURPOSE;
-	private Double TOTAL_AMOUNT; 
-	private String CURRENCY;
-	private String PAYMENT_STATUS;
+	@Column(name="ORDER_DATE")
+	private Date  orderDate;
 	
-	public Order() {}
+	@Column(name="ORDER_TYPE")
+	private String orderType; 
 	
-	public String getORDER_HEADER_KEY() {
-		return ORDER_HEADER_KEY;
+	@Column(name="ORDER_PURPOSE")
+	private String orderPurpose;
+	
+	@Column(name="TOTAL_AMOUNT", columnDefinition="NUMBER(15,2) NOT NULL")
+	private Double totalAmount; 
+	
+	@Column(name="CURRENCY")
+	private String currency;
+	
+	@Column(name="PAYMENT_STATUS")
+	private String paymentStatus;
+	
+	
+	/**
+	 * @return the orderHeaderKey
+	 */
+	public String getOrderHeaderKey() {
+		return orderHeaderKey;
 	}
-	public void setORDER_HEADER_KEY(String oRDER_HEADER_KEY) {
-		ORDER_HEADER_KEY = oRDER_HEADER_KEY;
+
+
+	/**
+	 * @param orderHeaderKey the orderHeaderKey to set
+	 */
+	public void setOrderHeaderKey(String orderHeaderKey) {
+		this.orderHeaderKey = orderHeaderKey;
 	}
-	public String getORDER_NO() {
-		return ORDER_NO;
+
+
+	/**
+	 * @return the orderNo
+	 */
+	public String getOrderNo() {
+		return orderNo;
 	}
-	public void setORDER_NO(String oRDER_NO) {
-		ORDER_NO = oRDER_NO;
+
+
+	/**
+	 * @param orderNo the orderNo to set
+	 */
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
 	}
-	public Date getORDER_DATE() {
-		return ORDER_DATE;
+
+
+	/**
+	 * @return the orderDate
+	 */
+	public Date getOrderDate() {
+		return orderDate;
 	}
-	public void setORDER_DATE(Date oRDER_DATE) {
-		ORDER_DATE = oRDER_DATE;
+
+
+	/**
+	 * @param orderDate the orderDate to set
+	 */
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
-	public String getORDER_TYPE() {
-		return ORDER_TYPE;
+
+	
+	/**
+	 * @return the orderType
+	 */
+	public String getOrderType() {
+		return orderType;
 	}
-	public void setORDER_TYPE(String oRDER_TYPE) {
-		ORDER_TYPE = oRDER_TYPE;
+
+
+	/**
+	 * @param orderType the orderType to set
+	 */
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
 	}
-	public String getORDER_PURPOSE() {
-		return ORDER_PURPOSE;
+
+
+	/**
+	 * @return the orderPurpose
+	 */
+	public String getOrderPurpose() {
+		return orderPurpose;
 	}
-	public void setORDER_PURPOSE(String oRDER_PURPOSE) {
-		ORDER_PURPOSE = oRDER_PURPOSE;
+
+
+	/**
+	 * @param orderPurpose the orderPurpose to set
+	 */
+	public void setOrderPurpose(String orderPurpose) {
+		this.orderPurpose = orderPurpose;
 	}
-	public Double getTOTAL_AMOUNT() {
-		return TOTAL_AMOUNT;
+
+
+	/**
+	 * @return the totalAmount
+	 */
+	public Double getTotalAmount() {
+		return totalAmount;
 	}
-	public void setTOTAL_AMOUNT(Double tOTAL_AMOUNT) {
-		TOTAL_AMOUNT = tOTAL_AMOUNT;
+
+
+	/**
+	 * @param totalAmount the totalAmount to set
+	 */
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
-	public String getCURRENCY() {
-		return CURRENCY;
+
+
+	/**
+	 * @return the currency
+	 */
+	public String getCurrency() {
+		return currency;
 	}
-	public void setCURRENCY(String cURRENCY) {
-		CURRENCY = cURRENCY;
+
+
+	/**
+	 * @param currency the currency to set
+	 */
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
-	public String getPAYMENT_STATUS() {
-		return PAYMENT_STATUS;
+
+
+	/**
+	 * @return the paymentStatus
+	 */
+	public String getPaymentStatus() {
+		return paymentStatus;
 	}
-	public void setPAYMENT_STATUS(String pAYMENT_STATUS) {
-		PAYMENT_STATUS = pAYMENT_STATUS;
+
+
+	/**
+	 * @param paymentStatus the paymentStatus to set
+	 */
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
 	}
+
+
 	@Override
 	public String toString() {
-		return "Order [ORDER_HEADER_KEY=" + ORDER_HEADER_KEY + ", ORDER_NO=" + ORDER_NO + ", ORDER_DATE=" + ORDER_DATE
-				+ ", ORDER_TYPE=" + ORDER_TYPE + ", ORDER_PURPOSE=" + ORDER_PURPOSE + ", TOTAL_AMOUNT=" + TOTAL_AMOUNT
-				+ ", CURRENCY=" + CURRENCY + ", PAYMENT_STATUS=" + PAYMENT_STATUS + "]";
+		return "Order [ORDER_HEADER_KEY=" + orderHeaderKey + ", ORDER_NO=" + orderNo + ", ORDER_DATE=" + orderDate
+				+ ", ORDER_TYPE=" + orderType + ", ORDER_PURPOSE=" + orderPurpose + ", TOTAL_AMOUNT=" + totalAmount
+				+ ", CURRENCY=" + currency + ", PAYMENT_STATUS=" + paymentStatus + "]";
 	}
 	
 }

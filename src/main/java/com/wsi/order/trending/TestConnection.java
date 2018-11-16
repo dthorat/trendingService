@@ -5,61 +5,80 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+/**
+ * Class to test database connection
+ * 
+ * @author Zubair Alam
+ */
 public class TestConnection {
+
 	static Connection connection = null;
+
+	private static final Logger logger = LogManager.getLogger(TestConnection.class);
+
 	public static void main(String[] args) throws SQLException {
-		System.out.println("-------- Oracle JDBC Connection Testing ------");
+		logger.info("-------- Oracle JDBC Connection Testing ------");
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-        try {
+		} catch (ClassNotFoundException e) {
+			logger.info("Where is your Oracle JDBC Driver?");
+			logger.error(e);
+			return;
+		}
 
-            Class.forName("oracle.jdbc.driver.OracleDriver");
+		logger.info("Oracle JDBC Driver Registered!");
+		try {
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@10.2.20.31:1521:xe", "NISUM", "admin");
+			if (connection != null) {
+				logger.info("You made it, take control your database now!");
+				printTableNames();
+			} else {
+				logger.info("Failed to make connection!");
+			}
 
-        } catch (ClassNotFoundException e) {
+		} catch (SQLException e) {
 
-            System.out.println("Where is your Oracle JDBC Driver?");
-            e.printStackTrace();
-            return;
-
-        }
-
-        System.out.println("Oracle JDBC Driver Registered!");
-
-        
-
-        try {
-
-            connection = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@10.2.20.31:1521:xe", "NISUM", "admin");
-
-        } catch (SQLException e) {
-
-            System.out.println("Connection Failed! Check output console");
-            e.printStackTrace();
-            return;
-
-        }
-
-        if (connection != null) {
-            System.out.println("You made it, take control your database now!");
-            printTableNames();
-        } else {
-            System.out.println("Failed to make connection!");
-        }
+			logger.info("Connection Failed! Check output console");
+			logger.error(e);
+		} finally {
+			if (connection != null) {
+				connection.close();
+			}
+		}
 	}
-	public static void printTableNames() throws SQLException {
+
+	private static void printTableNames() throws SQLException {
 		String query = "SELECT * from YFS_ITEM";
-		ResultSet rs = connection.createStatement().executeQuery(query);
-		/*while(rs.next()) {
-			System.out.println(rs.getString(1));
-		}*/
-		
-		ResultSetMetaData metaData = rs.getMetaData();
-	    System.out.println("Number of columns: "+metaData.getColumnCount());
-	    System.out.println("Table description...!");
-	    for(int i=1;i< metaData.getColumnCount();i++)
-	    {
-	      System.out.println(metaData.getColumnName(i)+"\t"+metaData.getColumnTypeName(i));
-	    }
+		ResultSet rs = null;
+		Statement smt = null;
+		try {
+			smt = connection.createStatement(); 
+			rs = smt.executeQuery(query);
+			/*
+			 * while(rs.next()) { logger.info(rs.getString(1)); }
+			 */
+			ResultSetMetaData metaData = rs.getMetaData();
+			logger.info("Number of columns: " + metaData.getColumnCount());
+			logger.info("Table description...!");
+			for (int i = 1; i < metaData.getColumnCount(); i++) {
+				logger.info(metaData.getColumnName(i) + "\t" + metaData.getColumnTypeName(i));
+			}
+		} catch (Exception e) {
+			logger.error(e);
+		} finally {
+			connection.close();
+			if(rs != null) {
+				rs.close();
+			}
+			if(smt != null) {
+				smt.close();
+			}
+		}
 	}
 }
