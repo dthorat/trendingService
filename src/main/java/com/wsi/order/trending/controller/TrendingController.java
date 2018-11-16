@@ -2,6 +2,8 @@ package com.wsi.order.trending.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,9 @@ import com.wsi.order.trending.service.ItemsService;
 @RestController
 public class TrendingController {
 
+	// Logger
+	private static final Logger logger = LogManager.getLogger(TrendingController.class);
+	
 	@Autowired
 	private ItemsService itemsService;
 	
@@ -28,6 +33,7 @@ public class TrendingController {
 
     @GetMapping("/trending")
     public List<Item> getTrendingItems() {
+    	logger.info("inside getTrendingItems");
         return  repository.findTrendingItemsNative();
     }
     
@@ -37,8 +43,7 @@ public class TrendingController {
     
     @GetMapping("/item/{itemid}")
     public Item getItemByID(@PathVariable("itemid") String itemid) {
-    	System.out.println("inside method call.");
-    	System.out.println("Item Key = "+itemid);
+    	logger.info("inside getItemByID call, Item Key = "+itemid);
     	Item item = itemsService.getItemById(itemid);
     	if(item != null) {
     		return item;
@@ -46,8 +51,6 @@ public class TrendingController {
     	else {
     		throw new ItemNotFoundException("No item available for the given key.");
     	}
-    	/*Item item = new Item();
-    	item.setCOST_CURRENCY("DOLOR");
-    	return item;*/
+
     }
 }

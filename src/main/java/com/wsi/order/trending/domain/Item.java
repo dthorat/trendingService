@@ -1,5 +1,6 @@
 package com.wsi.order.trending.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,100 +18,266 @@ public class Item {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String ITEM_KEY; 
-	private String ITEM_ID; 
-	private String SHORT_DESCRIPTION; 
-	private String DESCRIPTION; 
-	private String EXTENDED_DESCRIPTION; 
-	private Double UNIT_COST; 
-	private String COST_CURRENCY; 
-	private String MANUFACTURER_NAME; 
-	private String MANUFACTURER_ITEM; 
-	private String MANUFACTURER_ITEM_DESC; 
-	private String ITEM_TYPE; 
-	private String STATUS;
+	@Column(name = "ITEM_KEY")
+	private String itemKey; 
 	
-	public Item() {}
+	@Column(name = "ITEM_ID")
+	private String itemId; 
 	
-	public String getITEM_KEY() {
-		return ITEM_KEY;
+	@Column(name = "SHORT_DESCRIPTION")
+	private String shortDesc; 
+	
+	@Column(name = "DESCRIPTION")
+	private String description; 
+	
+	@Column(name = "EXTENDED_DESCRIPTION")
+	private String extendedDesc; 
+	
+	@Column(name = "UNIT_COST")
+	private Double unitCost; 
+	
+	@Column(name = "COST_CURRENCY")
+	private String costCurrency; 
+	
+	@Column(name = "MANUFACTURER_NAME")
+	private String manufacturerName; 
+	
+	@Column(name = "MANUFACTURER_ITEM")
+	private String manufacturerItem; 
+	
+	@Column(name = "MANUFACTURER_ITEM_DESC")
+	private String manufacturerItemDesc; 
+	
+	@Column(name = "ITEM_TYPE")
+	private String itemType; 
+	
+	@Column(name = "STATUS")
+	private String status;
+	
+	@Column(name = "IMAGE_LOCATION")
+	private String imageUrl;
+
+	
+	/**
+	 * @return the itemKey
+	 */
+	public String getItemKey() {
+		return itemKey;
 	}
-	public void setITEM_KEY(String iTEM_KEY) {
-		ITEM_KEY = iTEM_KEY;
+
+
+	/**
+	 * @param itemKey the itemKey to set
+	 */
+	public void setItemKey(String itemKey) {
+		this.itemKey = itemKey;
 	}
-	public String getITEM_ID() {
-		return ITEM_ID;
+
+
+	/**
+	 * @return the itemId
+	 */
+	public String getItemId() {
+		return itemId;
 	}
-	public void setITEM_ID(String iTEM_ID) {
-		ITEM_ID = iTEM_ID;
+
+
+	/**
+	 * @param itemId the itemId to set
+	 */
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
-	public String getSHORT_DESCRIPTION() {
-		return SHORT_DESCRIPTION;
+
+
+	/**
+	 * @return the shortDesc
+	 */
+	public String getShortDesc() {
+		return shortDesc;
 	}
-	public void setSHORT_DESCRIPTION(String sHORT_DESCRIPTION) {
-		SHORT_DESCRIPTION = sHORT_DESCRIPTION;
+
+
+	/**
+	 * @param shortDesc the shortDesc to set
+	 */
+	public void setShortDesc(String shortDesc) {
+		this.shortDesc = shortDesc;
 	}
-	public String getDESCRIPTION() {
-		return DESCRIPTION;
+
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
 	}
-	public void setDESCRIPTION(String dESCRIPTION) {
-		DESCRIPTION = dESCRIPTION;
+
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getEXTENDED_DESCRIPTION() {
-		return EXTENDED_DESCRIPTION;
+
+
+	/**
+	 * @return the extendedDesc
+	 */
+	public String getExtendedDesc() {
+		return extendedDesc;
 	}
-	public void setEXTENDED_DESCRIPTION(String eXTENDED_DESCRIPTION) {
-		EXTENDED_DESCRIPTION = eXTENDED_DESCRIPTION;
+
+
+	/**
+	 * @param extendedDesc the extendedDesc to set
+	 */
+	public void setExtendedDesc(String extendedDesc) {
+		this.extendedDesc = extendedDesc;
 	}
-	public Double getUNIT_COST() {
-		return UNIT_COST;
+
+
+	/**
+	 * @return the unitCost
+	 */
+	public Double getUnitCost() {
+		return unitCost;
 	}
-	public void setUNIT_COST(Double uNIT_COST) {
-		UNIT_COST = uNIT_COST;
+
+
+	/**
+	 * @param unitCost the unitCost to set
+	 */
+	public void setUnitCost(Double unitCost) {
+		this.unitCost = unitCost;
 	}
-	public String getCOST_CURRENCY() {
-		return COST_CURRENCY;
+
+
+
+	/**
+	 * @return the costCurrency
+	 */
+	public String getCostCurrency() {
+		return costCurrency;
 	}
-	public void setCOST_CURRENCY(String cOST_CURRENCY) {
-		COST_CURRENCY = cOST_CURRENCY;
+
+
+	/**
+	 * @param costCurrency the costCurrency to set
+	 */
+	public void setCostCurrency(String costCurrency) {
+		this.costCurrency = costCurrency;
 	}
-	public String getMANUFACTURER_NAME() {
-		return MANUFACTURER_NAME;
+
+
+
+
+	/**
+	 * @return the manufacturerName
+	 */
+	public String getManufacturerName() {
+		return manufacturerName;
 	}
-	public void setMANUFACTURER_NAME(String mANUFACTURER_NAME) {
-		MANUFACTURER_NAME = mANUFACTURER_NAME;
+
+
+
+
+	/**
+	 * @param manufacturerName the manufacturerName to set
+	 */
+	public void setManufacturerName(String manufacturerName) {
+		this.manufacturerName = manufacturerName;
 	}
-	public String getMANUFACTURER_ITEM() {
-		return MANUFACTURER_ITEM;
+
+
+	/**
+	 * @return the manufacturerItem
+	 */
+	public String getManufacturerItem() {
+		return manufacturerItem;
 	}
-	public void setMANUFACTURER_ITEM(String mANUFACTURER_ITEM) {
-		MANUFACTURER_ITEM = mANUFACTURER_ITEM;
+
+
+	/**
+	 * @param manufacturerItem the manufacturerItem to set
+	 */
+	public void setManufacturerItem(String manufacturerItem) {
+		this.manufacturerItem = manufacturerItem;
 	}
-	public String getMANUFACTURER_ITEM_DESC() {
-		return MANUFACTURER_ITEM_DESC;
+
+
+	/**
+	 * @return the manufacturerItemDesc
+	 */
+	public String getManufacturerItemDesc() {
+		return manufacturerItemDesc;
 	}
-	public void setMANUFACTURER_ITEM_DESC(String mANUFACTURER_ITEM_DESC) {
-		MANUFACTURER_ITEM_DESC = mANUFACTURER_ITEM_DESC;
+
+
+	/**
+	 * @param manufacturerItemDesc the manufacturerItemDesc to set
+	 */
+	public void setManufacturerItemDesc(String manufacturerItemDesc) {
+		this.manufacturerItemDesc = manufacturerItemDesc;
 	}
-	public String getITEM_TYPE() {
-		return ITEM_TYPE;
+
+
+	/**
+	 * @return the itemType
+	 */
+	public String getItemType() {
+		return itemType;
 	}
-	public void setITEM_TYPE(String iTEM_TYPE) {
-		ITEM_TYPE = iTEM_TYPE;
+
+
+	/**
+	 * @param itemType the itemType to set
+	 */
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
 	}
-	public String getSTATUS() {
-		return STATUS;
+
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
 	}
-	public void setSTATUS(String sTATUS) {
-		STATUS = sTATUS;
+
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
+
+
+	/**
+	 * @return the imageUrl
+	 */
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+	/**
+	 * @param imageUrl the imageUrl to set
+	 */
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
 	@Override
 	public String toString() {
-		return "OrderLine [ITEM_KEY=" + ITEM_KEY + ", ITEM_ID=" + ITEM_ID + ", SHORT_DESCRIPTION=" + SHORT_DESCRIPTION
-				+ ", DESCRIPTION=" + DESCRIPTION + ", EXTENDED_DESCRIPTION=" + EXTENDED_DESCRIPTION + ", UNIT_COST="
-				+ UNIT_COST + ", COST_CURRENCY=" + COST_CURRENCY + ", MANUFACTURER_NAME=" + MANUFACTURER_NAME
-				+ ", MANUFACTURER_ITEM=" + MANUFACTURER_ITEM + ", MANUFACTURER_ITEM_DESC=" + MANUFACTURER_ITEM_DESC
-				+ ", ITEM_TYPE=" + ITEM_TYPE + ", STATUS=" + STATUS + "]";
+		return "OrderLine [ITEM_KEY=" + itemKey + ", ITEM_ID=" + itemId + ", SHORT_DESCRIPTION=" + shortDesc
+				+ ", DESCRIPTION=" + description + ", EXTENDED_DESCRIPTION=" + extendedDesc + ", UNIT_COST="
+				+ unitCost + ", COST_CURRENCY=" + costCurrency + ", MANUFACTURER_NAME=" +manufacturerName
+				+ ", MANUFACTURER_ITEM=" + manufacturerItem + ", MANUFACTURER_ITEM_DESC=" + manufacturerItemDesc
+				+ ", ITEM_TYPE=" + itemType + ", STATUS=" + status +", IMAGE_URL"+imageUrl+"]";
 	}
 	
 }
