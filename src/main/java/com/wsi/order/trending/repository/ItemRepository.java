@@ -13,4 +13,7 @@ public interface ItemRepository extends JpaRepository<Item, String> {
 
 	    @Query(nativeQuery = true, name="Item.trendingItems")
 	    List<Item> findTrendingItemsNative();
+	    
+	    @Query(nativeQuery = true, name="Item.allTrendingItems")
+	    List<Item> findAllTrendingItems();
 }

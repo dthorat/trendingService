@@ -49,6 +49,26 @@ public class TrendingController {
     	}
     }
     
+    @GetMapping("/trending/all")
+    public  ResponseEntity<List<ItemVo>> getAllTrendingItems() {
+    	logger.info("inside getTrendingItems");
+    	try {
+    		List<Item> itemsList = itemsService.getTrendingItems();
+    		List<ItemVo> itemVoList = new ArrayList<>();
+    		ConvertEntityToVo convertEntityToVo = new ConvertEntityToVo();
+    		if(!itemsList.isEmpty()) {
+	    		for(Item item : itemsList) {
+	    			
+	    			itemVoList.add(convertEntityToVo.convertEntityToVo(item));
+	    		}
+    		}
+        	return new ResponseEntity<>(itemVoList, HttpStatus.OK);
+    	}catch(Exception e ) {
+    		logger.error(e);
+    		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    	}
+    }
+    
     @GetMapping("/item/{itemid}")
     public ResponseEntity<ItemVo> getItemByID(@PathVariable("itemid") String itemid) {
     	logger.info("inside getItemByID call, Item Key = "+itemid);

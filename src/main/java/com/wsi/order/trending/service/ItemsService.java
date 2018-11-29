@@ -28,4 +28,7 @@ public class ItemsService {
 		 return itemsRepository.findTrendingItemsNative();
 	 }
 
+	 public  List<Item> getAllTrendingItems() {
+		 return itemsRepository.findAllTrendingItems();
+	 }
 }
