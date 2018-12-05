@@ -31,4 +31,9 @@ public class ItemsService {
 	 public  List<Item> getAllTrendingItems() {
 		 return itemsRepository.findAllTrendingItems();
 	 }
+	 
+	 public  List<Item> getGeoLocationsItems(String zipCodeParam) {
+		 System.out.println("Zipcode "+zipCodeParam);
+		 return itemsRepository.findGeoLocationItems(zipCodeParam);
+	 }
 }

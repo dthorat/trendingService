@@ -86,4 +86,25 @@ public class TrendingController {
     	}
 
     }
+    
+    @GetMapping("/trending/geolocation/items/{zipcode}")
+    public  ResponseEntity<List<ItemVo>> getGeoLocationItems(@PathVariable("zipcode") String zipcode) {
+    	logger.info("inside getGeoLocationItems");
+    	
+    		String zipCodeParam = zipcode.substring(0, 3)+"%";
+    		List<Item> itemsList = itemsService.getGeoLocationsItems(zipCodeParam);
+    		System.out.println(itemsList.size());
+    		List<ItemVo> itemVoList = new ArrayList<>();
+    		ConvertEntityToVo convertEntityToVo = new ConvertEntityToVo();
+    		if(itemsList.size() > 0) {
+	    		for(Item item : itemsList) {
+	    			
+	    			itemVoList.add(convertEntityToVo.convertEntityToVo(item));
+	    		}
+	    		return new ResponseEntity<>(itemVoList, HttpStatus.OK);
+    		}
+    		else {
+    	    		throw new ItemNotFoundException("No item available for the given pincode.");
+    		}
+    }
 }
