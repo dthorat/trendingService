@@ -3,6 +3,8 @@ package com.wsi.order.trending.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Singleton;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,14 @@ import com.wsi.order.trending.voconverter.ConvertEntityToVo;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@Singleton
 public class TrendingController {
 
 	private static final Logger logger = LogManager.getLogger(TrendingController.class);
-	
+	@Singleton
+	private static int num = 0;
+	@Singleton
+	private static int count = 0;
 	@Autowired
 	private ItemsService itemsService;
 	
@@ -90,7 +96,10 @@ public class TrendingController {
     @GetMapping("/trending/geolocation/items/{zipcode}")
     public  ResponseEntity<List<ItemVo>> getGeoLocationItems(@PathVariable("zipcode") String zipcode) {
     	logger.info("inside getGeoLocationItems");
-    	
+    		
+    		Integer newzipcode = Integer.parseInt(zipcode) + num;
+    		zipcode = String.valueOf(newzipcode);
+    		System.out.println(zipcode);
     		String zipCodeParam = zipcode.substring(0, 3)+"%";
     		List<Item> itemsList = itemsService.getGeoLocationsItems(zipCodeParam);
     		System.out.println(itemsList.size());
@@ -100,6 +109,12 @@ public class TrendingController {
 	    		for(Item item : itemsList) {
 	    			
 	    			itemVoList.add(convertEntityToVo.convertEntityToVo(item));
+	    		}
+	    		num += 100000;
+	    		count++;
+	    		if(count > 5) {
+	    			num =0;
+	    			count = 0;
 	    		}
 	    		return new ResponseEntity<>(itemVoList, HttpStatus.OK);
     		}
